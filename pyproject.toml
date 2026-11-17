@@ -1,0 +1,35 @@
+[build-system]
+requires = ["setuptools>=69"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "kuberd"
+version = "0.1.0"
+description = "Kubernetes v1.35 control plane on Docker"
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = [
+    "cryptography>=50",
+    "docker>=7.2",
+    "PyYAML>=6.0",
+]
+
+[project.scripts]
+kuberd = "kuberd.cli:main"
+
+[tool.setuptools]
+packages = ["kuberd"]
+
+[tool.pylint.main]
+py-version = "3.12"
+
+[tool.pylint.format]
+max-line-length = 100
+
+[tool.pylint."messages control"]
+# Short helpers are self-explanatory; docstrings are kept where they add context.
+disable = [
+    "missing-module-docstring",
+    "missing-class-docstring",
+    "missing-function-docstring",
+]

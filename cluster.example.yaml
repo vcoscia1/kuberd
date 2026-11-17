@@ -1,0 +1,17 @@
+apiVersion: kuberd/v1alpha1
+kind: Cluster
+name: kuberd
+# Host IP the nodes (external VMs) use to reach the control plane.
+nodeEndpointIP: 192.168.1.80
+# Published host ports (internal ports stay 6443 and 8132).
+apiPort: 30000            # API server, on nodeEndpointIP and 127.0.0.1
+konnectivityPort: 30001   # konnectivity agents, on nodeEndpointIP
+serviceCIDR: 10.96.0.0/12
+clusterDomain: cluster.local
+# Extra API server certificate SANs (IPs or DNS names).
+extraAPIServerSANs:
+- api.kuberd.example
+kubernetesVersion: v1.35.0
+etcdVersion: 3.6.6-0
+corednsVersion: v1.13.1
+konnectivityVersion: v0.34.0
