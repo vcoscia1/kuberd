@@ -1,6 +1,5 @@
-# kuberd
 ![kuberd](docs/banner.svg)
-
+# kuberd
 
 [![pylint](https://github.com/vcoscia1/kuberd/actions/workflows/pylint.yml/badge.svg)](https://github.com/vcoscia1/kuberd/actions/workflows/pylint.yml)
 ![Python](https://img.shields.io/badge/python-3.12%2B-3776AB?logo=python&logoColor=white)
@@ -9,7 +8,7 @@
 
 kuberd runs several Kubernetes control planes in Docker, so you can join external VMs to them as worker nodes with `kubeadm join`.
 
-Each control plane is a single instance (no HA) made of these containers:
+Each control plane is a single instance (no HA) that includes the following containers:
 
 - etcd
 - kube-apiserver
