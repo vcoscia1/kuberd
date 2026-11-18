@@ -22,7 +22,6 @@ class Container:
     user: str | None = None  # e.g. "0" to override the image user
     labels: dict[str, str] | None = None
     restart_policy: str | None = None  # e.g. "unless-stopped"
-    # Pass a shared client (e.g. Cluster.client); a new one is opened otherwise.
     client: docker.DockerClient = field(
         default_factory=docker.from_env, kw_only=True, repr=False, compare=False
     )
