@@ -72,13 +72,12 @@ Join a VM as a worker node:
 docker exec <name>-toolbox kubeadm token create --print-join-command
 ```
 
-The printed command uses the internal endpoint: on the VM, run it with `<nodeEndpointIP>:<apiPort>` of that cluster instead of `<name>-kube-apiserver:6443`. kuberd installs no CNI, so nodes stay `NotReady` until one is installed.
+The printed command uses the internal endpoint: on the VM, run it with `<nodeEndpointIP>:<apiPort>` instead of `<name>-kube-apiserver:6443`.
+kuberd installs no CNI, so nodes stay `NotReady` until one is installed.
 
-## ✅ Verification
+Check cluster status:
 
 ```sh
-kuberd list
-kuberd kubeconfig <name>
 kubectl --kubeconfig <name>.kubeconfig get pods -A
 docker exec <name>-toolbox kubectl get nodes
 ```
