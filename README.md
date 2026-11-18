@@ -1,4 +1,6 @@
 # kuberd
+![kuberd](docs/banner.svg)
+
 
 [![pylint](https://github.com/vcoscia1/kuberd/actions/workflows/pylint.yml/badge.svg)](https://github.com/vcoscia1/kuberd/actions/workflows/pylint.yml)
 ![Python](https://img.shields.io/badge/python-3.12%2B-3776AB?logo=python&logoColor=white)
