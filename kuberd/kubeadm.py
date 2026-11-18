@@ -4,7 +4,6 @@ from dataclasses import dataclass, field
 import yaml
 
 from kuberd import pki
-from kuberd.config import Versions
 from kuberd.constants import (
     CA_VALIDITY,
     LEAF_VALIDITY,
@@ -37,6 +36,7 @@ from kuberd.utils import (
     get_one_role,
     role_binding,
 )
+from kuberd.versions import Versions
 
 
 @dataclass

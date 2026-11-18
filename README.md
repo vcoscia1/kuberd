@@ -5,7 +5,7 @@
 ![Kubernetes](https://img.shields.io/badge/kubernetes-1.35%2B-326CE5?logo=kubernetes&logoColor=white)
 ![Docker](https://img.shields.io/badge/docker-required-2496ED?logo=docker&logoColor=white)
 
-kuberd runs several Kubernetes control planes in Docker, so you can join external VMs to them as worker nodes with `kubeadm join`. 
+kuberd runs several Kubernetes control planes in Docker, so you can join external VMs to them as worker nodes with `kubeadm join`.
 
 Each control plane is a single instance (no HA) made of these containers:
 
@@ -20,7 +20,7 @@ Each control plane is a single instance (no HA) made of these containers:
 
 - Python 3.12+
 - Docker (tested with Docker Desktop on macOS)
-- Access to `registry.k8s.io` and `dl.k8s.io` 
+- Access to `registry.k8s.io` and `dl.k8s.io`
 
 ## 📦 Installation
 
@@ -29,7 +29,7 @@ python3 -m venv .venv
 .venv/bin/pip install -e .
 ```
 
-The `kuberd` command is then available as `.venv/bin/kuberd`.
+The `kuberd` command is then available as `.venv/bin/kuberd`. For development, `.venv/bin/pip install -e ".[dev]"` also installs pylint.
 
 ## ⚙️ Configuration
 
@@ -51,7 +51,7 @@ Each cluster is described by its own YAML file (see [cluster.example.yaml](clust
 | `corednsVersion` | CoreDNS image tag | `v1.13.1` | no |
 | `konnectivityVersion` | konnectivity server and agent image tag | `v0.34.0` | no |
 
-The versions can also be set with `kuberd create` flags (`--kubernetes-version`, `--etcd-version`, `--coredns-version`, `--konnectivity-version`), which override the file. Before creating anything, kuberd checks that every image exists on `registry.k8s.io`.
+The versions can also be set with `kuberd create` flags (`--kubernetes-version`, `--etcd-version`, `--coredns-version`, `--konnectivity-version`), which override the file. Before creating anything, kuberd checks that every image exists locally or on `registry.k8s.io`.
 
 Clusters on the same host need different `name`, `apiPort` and `konnectivityPort`. Internal ports stay standard (6443, 8132). If a host port is busy, `create` stops and suggests a free one.
 
@@ -64,7 +64,6 @@ kuberd kubeconfig <name>           # save the admin kubeconfig to ./<name>.kubec
 kuberd stop <name>                 # stop the containers of cluster <name>
 kuberd start <name>                # start the containers of cluster <name>
 kuberd delete <name>               # remove the containers, volumes and network of cluster <name>
-
 ```
 
 Join a VM as a worker node:
@@ -92,5 +91,6 @@ docker exec <name>-toolbox kubectl get nodes
 - `kuberd/pki.py`: X.509 primitives (ECDSA P-256 CAs and certificates, RSA ServiceAccount key)
 - `kuberd/config.py`: configuration file loading and validation
 - `kuberd/container.py`: `Container` wrapper around the Docker SDK
+- `kuberd/versions.py`: component versions and their images
 - `kuberd/constants.py`, `kuberd/utils.py`: shared constants and helpers
 - `cluster.example.yaml`: example configuration
